@@ -1,0 +1,30 @@
+{
+  "name": "oneapp",
+  "version": "1.0.0",
+  "description": "OneApp, the all in one social media application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport" : "*",
+    "passport-jwt": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathphan/OneApp.git"
+  },
+  "author": "Nathan Phan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathphan/OneApp/issues"
+  },
+  "homepage": "https://github.com/nathphan/OneApp#readme"
+}
