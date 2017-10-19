@@ -29,7 +29,6 @@ app.use(cors());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 require('./config/passport')(passport);
 
 // Set Static Folder

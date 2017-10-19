@@ -46,7 +46,7 @@ router.post('/authenticate', (req, res, next) => {
 
 				res.json({
 					success: true,
-					token: "JWT " + token,
+					token: "bearer " + token,
 					user: {
 						id: user._id,
 						fname: user.fname,
@@ -68,13 +68,13 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 	res.json({user: req.user});
 }); 
 
-router.get("/secretDebug",
-  function(req, res, next){
-    console.log(req.get('Authorization'));
-    next();
-  }, function(req, res){
-    res.json("debugging");
-});
+// router.get("/secretDebug",
+//   function(req, res, next){
+//     console.log(req.get('Authorization'));
+//     next();
+//   }, function(req, res){
+//     res.json("debugging");
+// });
 
 
 module.exports = router;

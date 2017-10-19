@@ -30,6 +30,14 @@ or through homebrew
 brew install mongodb
 ```
 
+#### AngularJS
+
+Download angular-cli through npm with 
+
+```
+npm install -g angular-cli
+```
+
 ### Building the app
 
 Once you have the source files, run 
