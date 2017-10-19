@@ -26,6 +26,13 @@ const port = 8000
 // CORS Middleware
 app.use(cors());
 
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
+// Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Body Parser Middleware
