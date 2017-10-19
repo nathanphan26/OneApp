@@ -20,7 +20,7 @@ or through homebrew
 brew install node
 ```
 
-##### MongoDB
+#### MongoDB
 
 Download MongoDB from their [website](https://www.mongodb.com/download-center#community)
 
@@ -28,6 +28,14 @@ or through homebrew
 
 ```
 brew install mongodb
+```
+
+#### AngularJS
+
+Download angular-cli through npm with 
+
+```
+npm install -g angular-cli
 ```
 
 ### Building the app
@@ -39,3 +47,17 @@ npm install
 ```
 
 to compile the code. 
+
+### Running the app
+
+Start MongoDB with 
+
+```
+net start MongoDB
+```
+
+and serve your application with
+
+```
+npm start
+```
