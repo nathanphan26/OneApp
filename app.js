@@ -39,10 +39,14 @@ app.use(bodyParser.json());
 
 app.use('/users', users);
 
-// // Index Route
-// app.get('/', (req, res) => {
-// 	res.send('Invalid endpoint');
-// });
+// Index Route
+app.get('/', (req, res) => {
+	res.send('Invalid endpoint');
+});
+
+app.get('*', (req, res) => {
+	res.sendFile(path,join(__dirname, 'public/index.html'));
+});
 
 // Start Server
 app.listen(port, () => {
