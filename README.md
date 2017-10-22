@@ -56,7 +56,13 @@ Start MongoDB with
 net start MongoDB
 ```
 
-and serve your application with
+Navigate into the 'angular-src' folder and run
+
+```
+ng build
+```
+
+to compile your code into a public folder. You can then serve your application with
 
 ```
 npm start
