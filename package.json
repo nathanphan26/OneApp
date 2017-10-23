@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/nathphan/OneApp#readme",
   "devDependencies": {
-    "@angular/cli": "^1.4.8"
+    "@angular/cli": "^1.4.9"
   }
 }
