@@ -20,7 +20,10 @@ router.post('/timeline', (req, res, next) => {
 	    	// console.log(tweets[key].text);
 	    	// str = str.concat(tweets[key].text);
 	    	// console.log(str);
-	    	timeline["tweet" + key] = tweets[key].text;
+	    	let newTweet = {
+	    		tweet: tweets[key].text
+	    	}
+	    	timeline["tweet" + key] = newTweet;
 	    }
 	    res.json({success: true, msg: timeline});
 	  }else{
@@ -30,3 +33,8 @@ router.post('/timeline', (req, res, next) => {
 });
 
 module.exports = router;
+
+// let newTweet = {
+// 	    		tweet: tweets[key].text;
+// 	    	}
+// timeline["tweet" + key] = newTweet;

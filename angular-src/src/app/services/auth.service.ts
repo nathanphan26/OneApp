@@ -24,6 +24,13 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  getTweets(obj){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8000/apis/timeline', obj,{headers: headers})
+      .map(res => res.json());
+  }
+
   getProfile(){
     let headers = new Headers();
     this.loadToken();
