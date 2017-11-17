@@ -3,10 +3,10 @@ const router = express.Router();
 const Twitter = require('twitter');
 
 var client = new Twitter({
-  consumer_key: 'syNTvTmQC6tnWnUnvY5NDNDPS',
-  consumer_secret: 'twBTVDXD2JicUMSbnjPlrblC53TZCmRO9Iyuo5izQ4vsL7HmwQ',
-  access_token_key: '916925589855932416-Trr3uaq8ZxuhjdQL5VeJZhhwAi7pDFc',
-  access_token_secret: 'bWib1xhYZIC197AFPg8sqCgSM7iyWCV3aKjkIX27SaoE3'
+  consumer_key: 'a2Nhh9MqEfoqbF7wvPOvsJVlt',
+  consumer_secret: 'EI6xwpSrNJQbB0o090iBP6hiaBtdAiqITx6PLYXGU5lifCGmwU',
+  access_token_key: '931617198866444288-xZ94xupUldyuvTZUshHaxlFrk9mWHbP',
+  access_token_secret: '0DuUv94HhZJrXF484GQXpKjWMFZ6AttMYJQw5o1FmmdI7'
 });
 
 router.post('/timeline', (req, res, next) => {

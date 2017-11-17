@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+	screenname: String;
+
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getTimeline(){
+  	console.log(this.screenname);
   }
 
 }
