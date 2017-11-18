@@ -16,6 +16,7 @@
     "mongoose": "*",
     "passport": "*",
     "passport-jwt": "*",
+    "passport-twitter-token": "^1.3.0",
     "twitter": "^1.7.1"
   },
   "repository": {
