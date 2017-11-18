@@ -8,5 +8,7 @@
 </form>
 
 <div>
-	<p>{{stringedTweets}}</p>
+	<ul>
+		<li *ngFor = 'let tweet of tweets'>{{tweet.tweet}}</li>
+	</ul>
 </div>

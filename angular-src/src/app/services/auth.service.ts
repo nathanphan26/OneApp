@@ -24,6 +24,7 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  // Calls backend API to grab tweets of specified user
   getTweets(obj){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

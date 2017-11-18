@@ -9,7 +9,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class DashboardComponent implements OnInit {
 	screenname: String;
-  tweets: Object;
+  tweets: any[];
   stringedTweets: String;
 
 
@@ -17,24 +17,27 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  // Debugging for tweets
   ngOnInit() {
-    this.tweets = {
-      tweet0: {
+    this.tweets = [
+      {
         tweet: "tweet0"
       },
-      tweet1: {
+      {
         tweet: "tweet1"
       }
-    }
+    ]
     console.log(this.tweets);
   }
 
+  // On form submit
   getTimeline(){
   	// console.log(this.screenname);
     const obj = {
       screenname: this.screenname
     }
 
+    // References ../../services/auth.services to grab tweets from backend
     this.authService.getTweets(obj).subscribe(data => {
       // console.log(data);
       if (data.success){
