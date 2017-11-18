@@ -5,7 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-const Twitter = require('twitter'); //cs115julig
+// const Twitter = require('twitter'); //cs115julig
 
 mongoose.connect(config.url);
 
@@ -19,30 +19,12 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 
+// Routes
 const users = require('./routes/users');
+const apis = require('./routes/apis');
 
 // Port Number
 const port = 8000
-
-// Twitter Middleware
-var client = new Twitter({
-  consumer_key: 'syNTvTmQC6tnWnUnvY5NDNDPS',
-  consumer_secret: 'twBTVDXD2JicUMSbnjPlrblC53TZCmRO9Iyuo5izQ4vsL7HmwQ',
-  access_token_key: '916925589855932416-Trr3uaq8ZxuhjdQL5VeJZhhwAi7pDFc',
-  access_token_secret: 'bWib1xhYZIC197AFPg8sqCgSM7iyWCV3aKjkIX27SaoE3'
-});
- 
-var params = {screen_name: 'cs115oneapp'};
-
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-  if (!error) {
-    // console.log(tweets);
-    for (var key in tweets) {
-    	console.log(tweets[key].text);
-    }
-  }
-});
-
 
 // CORS Middleware
 app.use(cors());
@@ -58,7 +40,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body Parser Middleware
 app.use(bodyParser.json());
 
+// Routes
 app.use('/users', users);
+app.use('/apis', apis);
 
 // Index Route
 app.get('/', (req, res) => {
