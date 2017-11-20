@@ -15,7 +15,10 @@
 
 <div>
 	<blockquote class="twitter-tweet" *ngFor = 'let tweet of tweets'>
-		<p>{{tweet.tweet}}</p>
-		<a href="#">{{tweet.screen_name}}</a>
+		<p>{{tweet.tweet}}
+		<a href="#">@{{tweet.screen_name}}</a></p>
+		&mdash; @{{tweet.screen_name}}
+		<a href="#">{{tweet.created_at}}</a>
+		
 	</blockquote>
 </div>
