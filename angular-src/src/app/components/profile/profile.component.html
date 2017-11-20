@@ -5,3 +5,11 @@
 		<li class="list-group-item">{{user.email}}</li>
 	</ul>
 </div>
+
+<div>
+	<a href="/twitter/login">Log in with Twitter</a>
+</div>
+
+<div *ngIf="twitUser">
+	<p>Hello "twitUser.username"</p>
+</div>

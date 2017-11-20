@@ -12,10 +12,13 @@
     "body-parser": "*",
     "cors": "*",
     "express": "*",
+    "express-session": "^1.15.6",
     "jsonwebtoken": "*",
     "mongoose": "*",
     "passport": "*",
     "passport-jwt": "*",
+    "passport-twitter": "^1.0.4",
+    "passport-twitter-token": "*",
     "twitter": "^1.7.1"
   },
   "repository": {

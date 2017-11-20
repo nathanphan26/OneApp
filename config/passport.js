@@ -2,11 +2,14 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/user');
 const config = require('../config/database');
+const TwitterStrategy = require('passport-twitter').Strategy;
+
+var configAuth = require('./auth');
 
 module.exports = function(passport){
 	let opts = {};
 	opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-	opts.secretOrKey = config.secret; 
+	opts.secretOrKey = config.secret;
 	passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
 		User.getUserById(jwt_payload.user._id, (err, user) => {
 			if(err){

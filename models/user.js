@@ -23,7 +23,13 @@ const UserSchema = mongoose.Schema({
 	password: {
 		type: String,
 		required: true
-	}
+	},
+	twitter: {
+	id: String,
+	token: String,
+	displayName: String,
+	username: String,
+},
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);

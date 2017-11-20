@@ -5,6 +5,10 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const routes = require('./routes/users');
+const Strategy = require('passport-twitter').Strategy;
+const session = require('express-session');
+const app = express();
 // const Twitter = require('twitter'); //cs115julig
 
 mongoose.connect(config.url);
@@ -16,8 +20,6 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
 	console.log('Database error: ' + err);
 });
-
-const app = express();
 
 // Routes
 const users = require('./routes/users');
@@ -57,3 +59,41 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
 	console.log('Server started on port '+ port);
 });
+
+//BEGIN TWITTER AUTHENTICATION
+passport.use(new Strategy({
+	consumerKey: 'a2Nhh9MqEfoqbF7wvPOvsJVlt',
+	consumerSecret: 'EI6xwpSrNJQbB0o090iBP6hiaBtdAiqITx6PLYXGU5lifCGmwU',
+	callbackURL: 'http://localhost:8000/twitter/callback'
+}, function(token, tokenSecret, profile, callback){
+		return callback(null, profile);
+}));
+
+
+//Serializing keeps the user login token throughout the pages
+passport.serializeUser(function(user, callback){
+	callback(null, user);
+})
+
+passport.deserializeUser(function(user, callback){
+	callback(null, obj);
+})
+
+app.use(session(
+	{secret: 'whatever',
+	 resave: true,
+ 	 saveUninitialized: true}
+))
+
+app.get('/profile', function(req, res) {
+		res.render('index', {twitUser: req.user})
+})
+
+app.get('/twitter/login', passport.authenticate('twitter'))
+app.get('/twitter/callback', passport.authenticate('twitter', {
+	failureRedirect: '/'
+}), function(req, res) {
+	res.redirect('/')
+})
+
+//END TWITTER AUTHENTICATION
