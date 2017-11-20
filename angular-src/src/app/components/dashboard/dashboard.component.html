@@ -1,3 +1,14 @@
-<p>
-  dashboard works!
-</p>
+<h2 class="page-header">Dashboard</h2>
+<form (submit)="getTimeline()">
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" [(ngModel)]="screenname" name="screenname" class="form-control">
+  </div>
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+
+<div>
+	<ul>
+		<li *ngFor = 'let tweet of tweets'>{{tweet.tweet}}</li>
+	</ul>
+</div>
