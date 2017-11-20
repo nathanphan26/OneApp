@@ -20,10 +20,17 @@ router.post('/timeline', (req, res, next) => {
 	    var timeline = [];
 	    for (var key in tweets) {
 	    	// console.log(tweets[key].text);
+	    	// console.log(tweets[key].user.screen_name);
 	    	// str = str.concat(tweets[key].text);
 	    	// console.log(str);
+	    	let date = tweets[key].created_at;
+	    	let [a, b, c, ...d] = date.split(" ");
+	    	var created_at = a + " " + b + " " + c;
+	    	// console.log(created_at);
 	    	let newTweet = {
-	    		tweet: tweets[key].text
+	    		tweet: tweets[key].text,
+	    		screen_name: tweets[key].user.screen_name,
+	    		created_at: created_at
 	    	}
 	    	timeline.push(newTweet);
 	    }
