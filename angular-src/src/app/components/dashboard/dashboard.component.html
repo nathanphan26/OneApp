@@ -7,8 +7,18 @@
   <input type="submit" class="btn btn-primary" value="Submit">
 </form>
 
-<div>
+<!-- <div>
 	<ul>
 		<li *ngFor = 'let tweet of tweets'>{{tweet.tweet}}</li>
 	</ul>
+</div> -->
+
+<div>
+	<blockquote class="twitter-tweet" *ngFor = 'let tweet of tweets'>
+		<p>{{tweet.tweet}}
+		<a href="#">@{{tweet.screen_name}}</a></p>
+		&mdash; @{{tweet.screen_name}}
+		<a href="#">{{tweet.created_at}}</a>
+		
+	</blockquote>
 </div>
