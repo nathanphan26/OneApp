@@ -24,13 +24,6 @@ router.post('/register', (req, res, next) => {
 	});
 });
 
-router.get('/auth/twitter', passport.authenticate('twitter'));
-router.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect : '/profile',
-            failureRedirect : '/'
-        }));
-
 // Authenticate
 router.post('/authenticate', (req, res, next) => {
 	const username = req.body.username;

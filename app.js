@@ -10,11 +10,7 @@ const Strategy = require('passport-twitter').Strategy;
 const session = require('express-session');
 const app = express();
 const request = require('request');
-const qs = require('querystring');
-const exphbs = require('express-handlebars');
 // const Twitter = require('twitter'); //cs115juli
-app.set('view engine', 'handlebars');
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 mongoose.connect(config.url);
 
 mongoose.connection.on('connected', () => {
@@ -65,34 +61,45 @@ app.listen(port, () => {
 });
 
 //BEGIN TWITTER AUTHENTICATION
-var requestTokenUrl = "https://api.twitter.com/oauth/request_token";
-var CONSUMER_KEY = "a2Nhh9MqEfoqbF7wvPOvsJVlt";
-var CONSUMER_SECRET = "EI6xwpSrNJQbB0o090iBP6hiaBtdAiqITx6PLYXGU5lifCGmwU";
-
-var oauth = {
-  callback : "http://localhost:3000/signin-with-twitter",
-  consumer_key  : CONSUMER_KEY,
-  consumer_secret : CONSUMER_SECRET
-}
-var oauthToken = "";
-var oauthTokenSecret = "";
-app.get('/', function (req, res) {
-  //Step-1 Obtaining a request token
-  request.post({url : requestTokenUrl, oauth : oauth}, function (e, r, body){
-
-    //Parsing the Query String containing the oauth_token and oauth_secret.
-    var reqData = qs.parse(body);
-    oauthToken = reqData.oauth_token;
-    oauthTokenSecret = reqData.oauth_token_secret;
-
-    //Step-2 Redirecting the user by creating a link
-    //and allowing the user to click the link
-    var uri = 'https://api.twitter.com/oauth/authenticate'
-    + '?' + qs.stringify({oauth_token: oauthToken})
-     res.render('test', {url : uri});
-  });
-});
+passport.use(new Strategy({
+	consumerKey: 'a2Nhh9MqEfoqbF7wvPOvsJVlt',
+	consumerSecret: 'EI6xwpSrNJQbB0o090iBP6hiaBtdAiqITx6PLYXGU5lifCGmwU',
+	callbackURL: 'http://localhost:8000/twitter/callback'
+}, function(token, tokenSecret, profile, callback){
+	console.log(token);
+	console.log(tokenSecret);
+	console.log(profile);
+	console.log(callback);
+	return callback(null, profile);
+}));
 
 
+
+
+//Serializing keeps the user login token throughout the pages
+passport.serializeUser(function(user, callback){
+	callback(null, user);
+})
+
+passport.deserializeUser(function(user, callback){
+	callback(null, obj);
+})
+
+app.use(session(
+	{secret: 'whatever',
+	 resave: true,
+ 	 saveUninitialized: true}
+))
+
+app.get('/profile', function(req, res) {
+		res.render('/', {twitUser: req.user})
+})
+
+app.get('/twitter/login', passport.authenticate('twitter'))
+app.get('/twitter/callback', passport.authenticate('twitter', {
+	failureRedirect: 'http://yahoo.com'
+}), function(req, res) {
+	res.redirect('/')
+})
 
 //END TWITTER AUTHENTICATION
