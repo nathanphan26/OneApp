@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
 
     // References ../../services/auth.services to grab tweets from backend
     this.authService.getTweets(obj).subscribe(data => {
-      // console.log(data);
+      console.log("data" + data);
       if (data.success){
         this.flashMessage.show('Worked', {cssClass: 'alert-success', timeout: 8000});
         this.tweets = data.msg;

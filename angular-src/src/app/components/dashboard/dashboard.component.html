@@ -1,5 +1,5 @@
 <h2 class="page-header">Dashboard</h2>
-<form (submit)="getTimeline()">
+<form #myForm="ngForm" (submit)="getTimeline(); myForm.reset()">
   <div class="form-group">
     <label>Username</label>
     <input type="text" [(ngModel)]="screenname" name="screenname" class="form-control">
@@ -8,7 +8,11 @@
 </form>
 
 <div>
-	<ul>
-		<li *ngFor = 'let tweet of tweets'>{{tweet.tweet}}</li>
-	</ul>
+	<blockquote class="twitter-tweet" *ngFor = 'let tweet of tweets'>
+		<p>{{tweet.tweet}}
+		<a href="#">@{{tweet.screen_name}}</a></p>
+		&mdash; @{{tweet.screen_name}}
+		<a href="#">{{tweet.created_at}}</a>
+		
+	</blockquote>
 </div>
