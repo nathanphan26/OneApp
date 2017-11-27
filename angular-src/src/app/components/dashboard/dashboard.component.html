@@ -1,21 +1,11 @@
 <h2 class="page-header">Dashboard</h2>
-<form (submit)="getTimeline()">
+<form #myForm="ngForm" (submit)="getTimeline(); myForm.reset()">
   <div class="form-group">
     <label>Username</label>
     <input type="text" [(ngModel)]="screenname" name="screenname" class="form-control">
   </div>
   <input type="submit" class="btn btn-primary" value="Submit">
 </form>
-
-<button (click) = "fbLogin()">Login with facebook</button>
-<button (click) = "fbLogout()">Logout with facebook</button>
-<button (click) = "fbGetUser()">Get User</button>
-
-<!-- <div>
-	<ul>
-		<li *ngFor = 'let tweet of tweets'>{{tweet.tweet}}</li>
-	</ul>
-</div> -->
 
 <div>
 	<blockquote class="twitter-tweet" *ngFor = 'let tweet of tweets'>

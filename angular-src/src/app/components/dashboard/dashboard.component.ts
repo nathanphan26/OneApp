@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,18 +13,8 @@ export class DashboardComponent implements OnInit {
   stringedTweets: String;
 
 
-  constructor(private authService:AuthService,private flashMessage:FlashMessagesService,private fb: FacebookService) { 
-    let initParams: InitParams = {
-      appId: '524567017882986',
-      xfbml: true,
-      version: 'v2.10'
-    };
- 
-    fb.init(initParams);
+  constructor(private authService:AuthService,private flashMessage:FlashMessagesService) { 
 
-  //   this.fb.login()
-  // .then((response: LoginResponse) => console.log('Logged in', response))
-  // .catch(e => console.error('Error logging in'));
   }
 
   // Debugging for tweets
@@ -39,22 +28,6 @@ export class DashboardComponent implements OnInit {
       }
     ]
     console.log(this.tweets);
-  }
-
-  fbLogin(){
-    this.fb.login()
-  .then((response: LoginResponse) => console.log('Logged in', response))
-  .catch(e => console.error('Error logging in'));
-  }
-
-  fbLogout(){
-    this.fb.logout().then(() => console.log('Logged out!'));
-  }
-
-  fbGetUser(){
-    this.fb.api('/me?fields=id,name')
-      .then(res => console.log(res))
-      .catch(e => console.log(e));
   }
 
   // On form submit

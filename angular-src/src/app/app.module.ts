@@ -18,13 +18,15 @@ import { AuthService} from './services/auth.service';
 import { FlashMessagesModule} from 'angular2-flash-messages';
 
 import {AuthGuard} from './guards/auth.guard';
+import { FacebookComponent } from './components/facebook/facebook.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
-  {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
+  {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  {path:'facebook', component: FacebookComponent, canActivate:[AuthGuard]}
 
 ]
 
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    FacebookComponent
   ],
   imports: [
     BrowserModule,
