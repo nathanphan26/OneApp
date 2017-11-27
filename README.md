@@ -35,7 +35,13 @@ brew install mongodb
 Download angular-cli through npm with 
 
 ```
-npm install -g angular-cli
+npm install -g @angular/cli
+```
+
+Run the web server (http://localhost:4200) with
+
+```
+ng serve
 ```
 
 ### Building the app
