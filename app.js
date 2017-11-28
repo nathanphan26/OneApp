@@ -60,16 +60,20 @@ app.listen(port, () => {
 	console.log('Server started on port '+ port);
 });
 
+
+
 //BEGIN TWITTER AUTHENTICATION
 passport.use(new Strategy({
 	consumerKey: 'a2Nhh9MqEfoqbF7wvPOvsJVlt',
 	consumerSecret: 'EI6xwpSrNJQbB0o090iBP6hiaBtdAiqITx6PLYXGU5lifCGmwU',
 	callbackURL: 'http://localhost:8000/twitter/callback'
 }, function(token, tokenSecret, profile, callback){
-	console.log(token);
-	console.log(tokenSecret);
-	console.log(profile);
-	console.log(callback);
+	// console.log(token);
+	// console.log(tokenSecret);
+	// console.log(profile);
+	// console.log(callback);
+	module.exports.token = token;
+	module.exports.tokenSecret = tokenSecret;
 	return callback(null, profile);
 }));
 
