@@ -1,5 +1,8 @@
-## Task procedure process
+## Definition of Done
 
-1. Tasks are assigned to developers
-2. Completed tasks are then pushed to featured branch
-3. Code must undergo review process (QA) before being merged to develop/master branch
+- Compleition Criteria
+    -	Code is completed
+    -   Peer Reviewed
+    - Thoroughly commented
+- Acceptance Criteria
+	- Merged without conflicts
