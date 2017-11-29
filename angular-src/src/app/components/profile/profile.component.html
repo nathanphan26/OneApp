@@ -1,7 +1,13 @@
+<script type="text/javascript" src="../../../../app.js"></script>
+
 <div *ngIf="user">
 	<h2 class="page-header">{{user.fname}} {{user.lname}}</h2>
 	<ul class="list-group">
 		<li class="list-group-item">Username: {{user.username}}</li>
 		<li class="list-group-item">{{user.email}}</li>
 	</ul>
+</div>
+
+<div>
+	<a href='/twitter/login'><img src="https://i.imgur.com/SicaqfU.png"></a>
 </div>
