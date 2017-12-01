@@ -22,7 +22,7 @@ router.post('/register', (req, res, next) => {
 			res.json({success: true, msg: 'User registered'});
 		}
 	});
-}); 
+});
 
 // Authenticate
 router.post('/authenticate', (req, res, next) => {
@@ -61,12 +61,12 @@ router.post('/authenticate', (req, res, next) => {
 			}
 		});
 	});
-}); 
+});
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
 	res.json({user: req.user});
-}); 
+});
 
 // router.get("/secretDebug",
 //   function(req, res, next){
