@@ -1,5 +1,5 @@
 <h2 class="page-header">Dashboard</h2>
-<form (submit)="getTimeline()">
+<form #myForm="ngForm" (submit)="getTimeline(); myForm.reset()">
   <div class="form-group">
     <label>Username</label>
     <input type="text" [(ngModel)]="screenname" name="screenname" class="form-control">
@@ -7,6 +7,7 @@
   <input type="submit" class="btn btn-primary" value="Submit">
 </form>
 
+<!-- <<<<<<< HEAD -->
  <!-- Add the button to load the home feeds -->
 <!-- button ="getHome()" -->
 <button type="button" class="btn btn-primary" (click)="getHome()" >Home Feeds</button  >
@@ -17,6 +18,8 @@
 	</ul>
 </div> -->
 
+<!--=======
+>>>>>>> 21345b2fc4a6cf5f064102e4f158fc3c33bae42d -->
 <div>
 	<blockquote class="twitter-tweet" *ngFor = 'let tweet of tweets'>
 		<p>{{tweet.tweet}}

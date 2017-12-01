@@ -1,0 +1,31 @@
+<h2 class="page-header">Facebook</h2>
+
+<button *ngIf="!fbIsUserLoggedIn()" (click) = "fbLogin()" class="loginBtn loginBtn--facebook">Login with facebook</button>
+<button *ngIf="fbIsUserLoggedIn()" (click) = "fbLogout()" class="btn btn-danger">Logout</button>
+<button *ngIf="fbIsUserLoggedIn()" (click) = "fbGetFeed()" class="btn btn-primary">Get Feed</button>
+<!-- <button (click) = "fbGetUser()">Get User</button> -->
+
+<div *ngIf="fbIsUserLoggedIn()">
+	<h2>Hello {{fbUser.name}}</h2>
+	<ul class='list-group'>
+		<li class="list-group-item">Email: {{fbUser.email}}</li>
+		<li class="list-group-item">Birthday: {{fbUser.birthday}}</li>
+	</ul>
+</div>
+
+<form *ngIf="fbIsUserLoggedIn()" #myForm="ngForm" (submit)="fbPostStatus(); myForm.reset()">
+  <div class="form-group">
+    <label>Status Update</label>
+    <input type="text" [(ngModel)]="status" name="status" class="form-control">
+  </div>
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+
+<div *ngIf="fbReturnFeedBool()">
+	<ul class="list-group">
+		<li *ngFor = 'let post of fbFeed.data' class="list-group-item">
+		<p>{{post.message}}</p>
+		<p>{{post.story}}</p>
+		</li>
+	</ul>
+</div>

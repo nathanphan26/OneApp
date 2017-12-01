@@ -10,12 +10,20 @@
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
+    "consolidate": "^0.15.0",
     "cors": "*",
     "express": "*",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
     "jsonwebtoken": "*",
     "mongoose": "*",
     "passport": "*",
     "passport-jwt": "*",
+    "passport-twitter": "^1.0.4",
+    "passport-twitter-token": "*",
+    "query-string": "^5.0.1",
+    "request": "^2.83.0",
+    "swig": "^1.4.2",
     "twitter": "^1.7.1"
   },
   "repository": {
