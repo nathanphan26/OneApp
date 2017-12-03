@@ -1,3 +1,4 @@
+// Required packages through npm
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -10,9 +11,9 @@ const Strategy = require('passport-twitter').Strategy;
 const session = require('express-session');
 const app = express();
 const request = require('request');
-// const Twitter = require('twitter'); //cs115juli
-mongoose.connect(config.url);
 
+// Database setup
+mongoose.connect(config.url);
 mongoose.connection.on('connected', () => {
 	console.log('Connected to database ' + config.url);
 });
@@ -76,9 +77,6 @@ passport.use(new Strategy({
 	module.exports.tokenSecret = tokenSecret;
 	return callback(null, profile);
 }));
-
-
-
 
 //Serializing keeps the user login token throughout the pages
 passport.serializeUser(function(user, callback){
