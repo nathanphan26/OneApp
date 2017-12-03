@@ -10,6 +10,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 export class DashboardComponent implements OnInit {
 	screenname: String;
   tweets: any[];
+  homeTweets: any[];
 
   constructor(private authService:AuthService,private flashMessage:FlashMessagesService) {}
 
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit {
     this.authService.getHomeT(obj).subscribe(data => {
       if (data.success){
         this.flashMessage.show('Worked', {cssClass: 'alert-success', timeout: 8000});
-        this.tweets = data.msg;
+        this.homeTweets = data.msg;
       } else {
         this.flashMessage.show('Something went wrong..', {cssClass: 'alert-danger', timeout: 8000});
       }

@@ -1,4 +1,4 @@
-## Coding Conventions
+## Styling Guide
 
 Our coding conventions for *comments* are going to be based off of [Google Githubs Javascript Coding Guide](https://google.github.io/styleguide/jsguide.html#formatting-comments)
 

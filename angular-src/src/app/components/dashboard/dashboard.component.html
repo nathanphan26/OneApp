@@ -1,21 +1,41 @@
 <h2 class="page-header">Twitter</h2>
-<form #myForm="ngForm" (submit)="getTimeline(); myForm.reset()">
-  <div class="form-group">
-    <label>Username</label>
-    <input type="text" [(ngModel)]="screenname" name="screenname" class="form-control">
-  </div>
-  <input type="submit" class="btn btn-primary" value="Submit">
-</form>
-
-<button type="button" class="btn btn-primary" (click)="getHome()" >Home Feeds</button>
-
 <div>
-	<blockquote class="twitter-tweet" *ngFor = 'let tweet of tweets'>
-		<p>
-      {{tweet.tweet}}
-		  <a href="#">@{{tweet.screen_name}}</a>
-    </p>
-		&mdash; @{{tweet.screen_name}}
-		<a href="#">{{tweet.created_at}}</a>
-	</blockquote>
+  <a href='/twitter/login'><img src="https://i.imgur.com/SicaqfU.png"></a>
+</div>
+
+<div class="sideleft">
+  <form #myForm="ngForm" (submit)="getTimeline(); myForm.reset()">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" [(ngModel)]="screenname" name="screenname" class="form-control">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+
+
+  <div>
+    <blockquote class="twitter-tweet" *ngFor = 'let tweet of tweets'>
+      <p>
+        {{tweet.tweet}}
+        <a href="#">@{{tweet.screen_name}}</a>
+      </p>
+      &mdash; @{{tweet.screen_name}}
+      <a href="#">{{tweet.created_at}}</a>
+    </blockquote>
+  </div>
+</div>
+
+<div class="sideright">
+  <button type="button" class="btn btn-primary" (click)="getHome()" >Home Feeds</button>
+
+  <div>
+    <blockquote class="twitter-tweet" *ngFor = 'let tweet of homeTweets'>
+      <p>
+        {{tweet.tweet}}
+        <a href="#">@{{tweet.screen_name}}</a>
+      </p>
+      &mdash; @{{tweet.screen_name}}
+      <a href="#">{{tweet.created_at}}</a>
+    </blockquote>
+  </div>
 </div>
