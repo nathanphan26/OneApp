@@ -10,69 +10,41 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 export class DashboardComponent implements OnInit {
 	screenname: String;
   tweets: any[];
-  stringedTweets: String;
 
+  constructor(private authService:AuthService,private flashMessage:FlashMessagesService) {}
 
-  constructor(private authService:AuthService,private flashMessage:FlashMessagesService) { 
+  ngOnInit() {}
 
-  }
-
-  // Debugging for tweets
-  ngOnInit() {
-    this.tweets = [
-      {
-        tweet: "tweet0"
-      },
-      {
-        tweet: "tweet1"
-      }
-    ]
-    console.log(this.tweets);
-  }
-
-  // On form submit
-  getTimeline(){
-  	// console.log(this.screenname);
+  // Function that grabs user input and call backend Twitter API to display a specific user's timeline
+  getTimeline() {
     const obj = {
       screenname: this.screenname
     }
 
     // References ../../services/auth.services to grab tweets from backend
     this.authService.getTweets(obj).subscribe(data => {
-      console.log("data" + data);
-      if (data.success){
+      if (data.success) {
         this.flashMessage.show('Worked', {cssClass: 'alert-success', timeout: 8000});
         this.tweets = data.msg;
-        console.log(this.tweets);
-        this.stringedTweets = JSON.stringify(this.tweets);
-        console.log(this.stringedTweets);
       } else {
         this.flashMessage.show('Something went wrong..', {cssClass: 'alert-danger', timeout: 8000});
       }
     });
-
   }
 
-  getHome(){
-  	// console.log(this.screenname);
+  getHome() {
     const obj = {
       screenname: this.screenname
     }
 
     // References ../../services/auth.services to grab tweets from backend
     this.authService.getHomeT(obj).subscribe(data => {
-      console.log("data" + data);
       if (data.success){
         this.flashMessage.show('Worked', {cssClass: 'alert-success', timeout: 8000});
         this.tweets = data.msg;
-        console.log(this.tweets);
-        this.stringedTweets = JSON.stringify(this.tweets);
-        console.log(this.stringedTweets);
       } else {
         this.flashMessage.show('Something went wrong..', {cssClass: 'alert-danger', timeout: 8000});
       }
     });
-
   }
-
 }
