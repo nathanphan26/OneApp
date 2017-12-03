@@ -18,9 +18,9 @@ router.post('/register', (req, res, next) => {
 
 	// Adds user to database through user model
 	User.addUser(newUser, (err,user) => {
-		if(err){
+		if(err) {
 			res.json({success: false, msg: 'Failed to register user'});
-		} else{
+		} else {
 			res.json({success: true, msg: 'User registered'});
 		}
 	});
@@ -38,14 +38,14 @@ router.post('/authenticate', (req, res, next) => {
 	// Grabs username
 	User.getUserByUsername(username, (err, user) => {
 		if(err) throw err;
-		if(!user){
+		if(!user) {
 			return res.json({success: false, msg: 'User not found'});
 		}
 
 		// Compares password with given username
 		User.comparePassword(password, user.password, (err, isMatch) => {
 			if(err) throw err;
-			if(isMatch){
+			if(isMatch) {
 				const token = jwt.sign({
 						user: user
 					}, config.secret, {
@@ -63,7 +63,7 @@ router.post('/authenticate', (req, res, next) => {
 						username: user.username
 					}
 				});
-			} else{
+			} else {
 				return res.json({success: false, msg: 'Wrong password' });
 			}
 		});

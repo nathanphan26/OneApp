@@ -30,18 +30,18 @@ const UserSchema = mongoose.Schema({
 const User = module.exports = mongoose.model('User', UserSchema);
 
 // Takes in an Id and returns a user with that ID
-module.exports.getUserById = function(id, callback){
+module.exports.getUserById = function(id, callback) {
 	User.findById(id, callback);
 }
 
 // Takes in a String and return the user with that username
-module.exports.getUserByUsername = function(username, callback){
+module.exports.getUserByUsername = function(username, callback) {
 	const query = {username: username}
 	User.findOne(query, callback);
 }
 
 // Takes in a user and adds them to the database with encrypted password
-module.exports.addUser = function(newUser, callback){
+module.exports.addUser = function(newUser, callback) {
 	bcrypt.genSalt(10, (err, salt) => {
 		bcrypt.hash(newUser.password, salt, (err, hash) => {
 			if (err) throw err;
@@ -52,7 +52,7 @@ module.exports.addUser = function(newUser, callback){
 }
 
 // Takes in a password and hash and compares them to see if the passwords match
-module.exports.comparePassword = function(candidatePassword, hash, callback){
+module.exports.comparePassword = function(candidatePassword, hash, callback) {
 	bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
 		if(err) throw err;
 		callback(null, isMatch);

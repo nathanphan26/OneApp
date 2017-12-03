@@ -48,7 +48,7 @@ router.post('/timeline', (req, res, next) => {
 	    }
 	    
 	    res.json({success: true, msg: timeline});
-	  } else{
+	  } else {
 	  		res.json({success: false, msg: 'Failed API call'});
 		}
 	});
@@ -84,7 +84,7 @@ router.post('/home_timeline', (req, res, next) => {
 	    	timeline.push(newTweet);
 	    }
 	    res.json({success: true, msg: timeline});
-	  }else{
+	  }else {
 	  		res.json({success: false, msg: 'Failed API call'});
 		}
 	});
