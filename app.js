@@ -68,8 +68,8 @@ passport.use(new Strategy({
 	consumerSecret: 'EI6xwpSrNJQbB0o090iBP6hiaBtdAiqITx6PLYXGU5lifCGmwU',
 	callbackURL: 'http://localhost:8000/twitter/callback'
 }, function(token, tokenSecret, profile, callback) {
-	module.exports.token = token;
-	module.exports.tokenSecret = tokenSecret;
+	exports.token = token;
+	exports.tokenSecret = tokenSecret;
 	return callback(null, profile);
 }));
 
