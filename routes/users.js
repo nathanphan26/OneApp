@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 config = require('../config/database')
 const User = require('../models/user');
 
+
 // Register post method
 router.post('/register', (req, res, next) => {
 	let newUser = new User({

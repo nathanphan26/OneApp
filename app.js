@@ -52,6 +52,7 @@ app.get('/', (req, res) => {
 	res.send('Invalid endpoint');
 });
 
+
 // app.get('*', (req, res) => {
 // 	res.sendFile(path.join(__dirname, 'public/index.html'));
 // });
@@ -97,5 +98,7 @@ app.get('/twitter/callback', passport.authenticate('twitter', {
 }), function(req, res) {
 	res.redirect('/')
 })
+
+module.exports = app;
 
 //END TWITTER AUTHENTICATION
