@@ -1,3 +1,4 @@
+// Required packages through npm
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -10,9 +11,9 @@ const Strategy = require('passport-twitter').Strategy;
 const session = require('express-session');
 const app = express();
 const request = require('request');
-// const Twitter = require('twitter'); //cs115juli
-mongoose.connect(config.url);
 
+// Database setup
+mongoose.connect(config.url);
 mongoose.connection.on('connected', () => {
 	console.log('Connected to database ' + config.url);
 });
@@ -51,47 +52,38 @@ app.get('/', (req, res) => {
 	res.send('Invalid endpoint');
 });
 
-//app.get('*', (req, res) => {
-	//res.sendFile(path,join(__dirname, 'public/index.html'));
-//});
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.join(__dirname, 'public/index.html'));
+// });
 
 // Start Server
 app.listen(port, () => {
 	console.log('Server started on port '+ port);
 });
 
-
-
 //BEGIN TWITTER AUTHENTICATION
 passport.use(new Strategy({
 	consumerKey: 'a2Nhh9MqEfoqbF7wvPOvsJVlt',
 	consumerSecret: 'EI6xwpSrNJQbB0o090iBP6hiaBtdAiqITx6PLYXGU5lifCGmwU',
 	callbackURL: 'http://localhost:8000/twitter/callback'
-}, function(token, tokenSecret, profile, callback){
-	// console.log(token);
-	// console.log(tokenSecret);
-	// console.log(profile);
-	// console.log(callback);
+}, function(token, tokenSecret, profile, callback) {
 	module.exports.token = token;
 	module.exports.tokenSecret = tokenSecret;
 	return callback(null, profile);
 }));
 
-
-
-
 //Serializing keeps the user login token throughout the pages
-passport.serializeUser(function(user, callback){
+passport.serializeUser(function(user, callback) {
 	callback(null, user);
 })
 
-passport.deserializeUser(function(user, callback){
+passport.deserializeUser(function(user, callback) {
 	callback(null, obj);
 })
 
 app.use(session(
 	{secret: 'whatever',
-	 resave: true,
+   resave: true,
  	 saveUninitialized: true}
 ))
 

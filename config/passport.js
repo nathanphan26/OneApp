@@ -1,3 +1,4 @@
+// Passport middlware
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/user');
@@ -6,18 +7,18 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 
 var configAuth = require('./auth');
 
-module.exports = function(passport){
+module.exports = function(passport) {
 	let opts = {};
 	opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 	opts.secretOrKey = config.secret;
 	passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
 		User.getUserById(jwt_payload.user._id, (err, user) => {
-			if(err){
+			if(err) {
 				return done(err, false);
 			}
-			if(user){
+			if(user) {
 				return done(null, user);
- 			} else{
+ 			} else {
  				return done(null, false);
  			}
 		});

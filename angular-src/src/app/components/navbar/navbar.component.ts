@@ -17,7 +17,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogoutClick(){
+  // Function to logout the user, call from auth services
+  onLogoutClick() {
   	this.authService.logout();
   	this.flashMessage.show('You are logged out', {
   		cssClass: 'alert-success',

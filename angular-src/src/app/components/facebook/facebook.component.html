@@ -3,7 +3,6 @@
 <button *ngIf="!fbIsUserLoggedIn()" (click) = "fbLogin()" class="loginBtn loginBtn--facebook">Login with facebook</button>
 <button *ngIf="fbIsUserLoggedIn()" (click) = "fbLogout()" class="btn btn-danger">Logout</button>
 <button *ngIf="fbIsUserLoggedIn()" (click) = "fbGetFeed()" class="btn btn-primary">Get Feed</button>
-<!-- <button (click) = "fbGetUser()">Get User</button> -->
 
 <div *ngIf="fbIsUserLoggedIn()">
 	<h2>Hello {{fbUser.name}}</h2>
@@ -21,7 +20,7 @@
   <input type="submit" class="btn btn-primary" value="Submit">
 </form>
 
-<div *ngIf="fbReturnFeedBool()">
+<div *ngIf="(fbReturnFeedBool()) && (fbIsUserLoggedIn())">
 	<ul class="list-group">
 		<li *ngFor = 'let post of fbFeed.data' class="list-group-item">
 		<p>{{post.message}}</p>

@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private authService:AuthService, private router:Router) { }
 
+  // Grabs user data to display on profile
   ngOnInit() {
   	this.authService.getProfile().subscribe(profile => {
   		this.user = profile.user;
@@ -21,5 +22,4 @@ export class ProfileComponent implements OnInit {
   		return false;
   	});
   }
-
 }
