@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+.sideleft {
+  display: inline-block !important;
+  width: 49% !important;
+  vertical-align: top !important;
+}
+
+.sideright {
+  display: inline-block !important;
+  width: 49% !important;
+  vertical-align: top !important;
+  padding-top: 75px !important; }
+
 blockquote.twitter-tweet {
   display: block;
   font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;

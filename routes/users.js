@@ -1,3 +1,4 @@
+// Required packages through npm
 const express = require('express');
 const router = express.Router();
 const passport = require('passport')
@@ -6,7 +7,7 @@ config = require('../config/database')
 const User = require('../models/user');
 
 
-// Register
+// Register post method
 router.post('/register', (req, res, next) => {
 	let newUser = new User({
 		fname: req.body.fname,
@@ -16,29 +17,36 @@ router.post('/register', (req, res, next) => {
 		password: req.body.password
 	});
 
+	// Adds user to database through user model
 	User.addUser(newUser, (err,user) => {
-		if(err){
+		if(err) {
 			res.json({success: false, msg: 'Failed to register user'});
-		} else{
+		} else {
 			res.json({success: true, msg: 'User registered'});
 		}
 	});
 });
 
-// Authenticate
+/* 
+ * Authenticate method.
+ * Compares username and password with 
+ * users in the database. Retruns token
+ */
 router.post('/authenticate', (req, res, next) => {
 	const username = req.body.username;
 	const password = req.body.password;
 
+	// Grabs username
 	User.getUserByUsername(username, (err, user) => {
 		if(err) throw err;
-		if(!user){
+		if(!user) {
 			return res.json({success: false, msg: 'User not found'});
 		}
 
+		// Compares password with given username
 		User.comparePassword(password, user.password, (err, isMatch) => {
 			if(err) throw err;
-			if(isMatch){
+			if(isMatch) {
 				const token = jwt.sign({
 						user: user
 					}, config.secret, {
@@ -56,26 +64,16 @@ router.post('/authenticate', (req, res, next) => {
 						username: user.username
 					}
 				});
-			} else{
+			} else {
 				return res.json({success: false, msg: 'Wrong password' });
-
 			}
 		});
 	});
 });
 
-// Profile
+// Profile method, returns the user logged in
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
 	res.json({user: req.user});
 });
-
-// router.get("/secretDebug",
-//   function(req, res, next){
-//     console.log(req.get('Authorization'));
-//     next();
-//   }, function(req, res){
-//     res.json("debugging");
-// });
-
 
 module.exports = router;
