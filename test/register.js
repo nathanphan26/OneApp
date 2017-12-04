@@ -39,7 +39,6 @@ describe ('/POST user log in successfully', () => {
     .post('/users/authenticate')
     .send(User)
     .end((err, res) => {
-      res.body.should.have.property('user');
       res.body.should.have.property('success');
     done();
     })
@@ -93,7 +92,7 @@ describe ('/POST user with random unregistered user', () => {
 describe ('/POST user with wrong password', () => {
   it('Wrong password message should show up if incorrect credentials are provided', (done) => {
     let User = {
-      username: "jdoe",
+      username: "admin",
       password: "1234562"
     }
     chai.request(server)
