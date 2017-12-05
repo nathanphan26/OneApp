@@ -94,7 +94,7 @@ app.get('/profile', function(req, res) {
 
 app.get('/twitter/login', passport.authenticate('twitter'))
 app.get('/twitter/callback', passport.authenticate('twitter', {
-	failureRedirect: 'http://yahoo.com'
+	failureRedirect: 'http://localhost:8000'
 }), function(req, res) {
 	res.redirect('/')
 })
